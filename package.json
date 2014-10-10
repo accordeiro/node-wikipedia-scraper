@@ -1,0 +1,11 @@
+{
+    "name"          : "twitter-bio-scraper",
+    "version"       : "0.0.1",
+    "description"   : "Scrape Lists of Politicians from Wikipedia",
+    "main"          : "scraper.js",
+    "author"        : "Alexandre Cordeiro",
+    "dependencies"  : {
+        "request"   : "latest",
+        "cheerio"   : "latest"
+    }
+}
