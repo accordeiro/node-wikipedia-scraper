@@ -17,6 +17,18 @@ function fix_dates(term_start, term_end) {
 }
 
 
+function date_to_str(date) {
+  if (!isNaN(date)) {
+    var d = date.getDate();
+    var m = date.getMonth() + 1;
+    var y = date.getFullYear();
+    return '' + (m<=9 ? '0' + m : m) + '/' + (d <= 9 ? '0' + d : d) + '/'  + y;
+  } else {
+    return null;
+  }
+}
+
+
 function parse_regular_row($, column_list, senate_class) {
   var senator_img    = $($(column_list[0]).find('a')[0]).attr('href');
   var senator_page   = $($(column_list[0]).find('a')[1]).attr('href');
@@ -37,8 +49,8 @@ function parse_regular_row($, column_list, senate_class) {
     "senate_class" : senate_class,
     "wiki_url"     : senator_page,
     "photo_url"    : senator_img,
-    "term_start"   : term_start,
-    "term_end"     : term_end
+    "term_start"   : date_to_str(term_start),
+    "term_end"     : date_to_str(term_end)
   };
 
   return data_json;
@@ -54,8 +66,8 @@ function parse_vacant_row($, column_list, senate_class) {
 
   var data_json = {
     "name"         : "Vacant",
-    "term_start"   : term_start,
-    "term_end"     : term_end,
+    "term_start"   : date_to_str(term_start),
+    "term_end"     : date_to_str(term_end),
     "senate_class" : senate_class
   };
 
@@ -126,7 +138,7 @@ function main() {
             }
 
             // Ensure the data retrieved is valid:
-            if (!isNaN(data_json.term_start) && !isNaN(data_json.term_end)) {
+            if (data_json.term_start && data_json.term_end) {
               senator_list.push(data_json);
             }
           });
