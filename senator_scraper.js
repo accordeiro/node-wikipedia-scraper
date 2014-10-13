@@ -130,7 +130,7 @@ function main() {
             // Parse following rows:
             var data_json = {};
             var column_list = $(row).find('td');
-            if (column_list.length >= 5) {
+            if (column_list.length >= 4) {
               data_json = parse_regular_row($, column_list, class_id_list[i].senate_class);
 
             } else {
